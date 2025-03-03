@@ -99,3 +99,28 @@ def get_user_challenge_submission(user_id, challenge_id):
     conn.close()
 
     return submission
+
+
+def get_leaderboard():
+    """
+    Get the leaderboard with user data and number of correct submissions
+
+    Returns: List of dicts with user data and submission count
+    """
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT u.id, u.username, COUNT(s.id) as correct_count
+        FROM users u
+        JOIN submissions s ON u.id = s.user_id
+        WHERE s.is_correct = 1
+        GROUP BY u.id
+        ORDER BY correct_count DESC
+    """)
+
+    leaderboard = cursor.fetchall()
+
+    conn.close()
+
+    return leaderboard
