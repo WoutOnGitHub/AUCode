@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Login/Register - AUCode{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+  <h1>Login or Register</h1>
+
+  <div class="auth-forms">
+    <!-- Login Form -->
+    <div class="auth-form-container">
+      <h2>Login</h2>
+      <form method="post" action="{{ url_for('auth.auth') }}" class="auth-form">
+        <div class="form-group">
+          <label for="login_username">Username</label>
+          <input type="text" id="login_username" name="login_username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="login_password">Password</label>
+          <input type="password" id="login_password" name="login_password" required>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" name="login" value="login" class="btn btn-primary">Login</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Register Form -->
+    <div class="auth-form-container">
+      <h2>Register</h2>
+      <form method="post" action="{{ url_for('auth.auth') }}" class="auth-form">
+        <div class="form-group">
+          <label for="reg_username">Username</label>
+          <input type="text" id="reg_username" name="reg_username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="reg_email">Email</label>
+          <input type="email" id="reg_email" name="reg_email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="reg_password">Password</label>
+          <input type="password" id="reg_password" name="reg_password" required>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" name="register" value="register" class="btn btn-primary">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
