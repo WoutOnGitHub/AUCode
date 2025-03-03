@@ -1,6 +1,7 @@
 from flask import Flask
 
 
+# To avoid circular imports, make sure only run.py imports this
 def create_app():
     """Application factory function"""
     app = Flask(__name__)
