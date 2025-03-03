@@ -48,6 +48,7 @@ def create_tables():
         title TEXT NOT NULL,
         description TEXT NOT NULL,
         file_path TEXT NOT NULL,
+        correct_hash TEXT NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
     """)

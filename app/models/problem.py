@@ -1,7 +1,7 @@
 from config.database import get_connection
 
 
-def create_problem(title, description, file_path):
+def create_problem(title, description, file_path, correct_hash):
     """
     Create a new problem in the database
 
@@ -11,8 +11,8 @@ def create_problem(title, description, file_path):
     cursor = conn.cursor()
 
     cursor.execute(
-        "INSERT INTO problems (title, description, file_path) VALUES (?, ?, ?)",
-        (title, description, file_path),
+        "INSERT INTO problems (title, description, file_path, correct_hash) VALUES (?, ?, ?, ?)",
+        (title, description, file_path, correct_hash),
     )
 
     # Get the ID of the newly inserted problem
