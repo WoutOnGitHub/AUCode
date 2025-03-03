@@ -41,9 +41,9 @@ def create_tables():
     )
     """)
 
-    # Create challenges table
+    # Create problems table
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS challenges (
+    CREATE TABLE IF NOT EXISTS problems (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
         description TEXT NOT NULL,
@@ -57,12 +57,12 @@ def create_tables():
     CREATE TABLE IF NOT EXISTS submissions (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,
-        challenge_id INTEGER NOT NULL,
+        problem_id INTEGER NOT NULL,
         solution_hash TEXT NOT NULL,
         submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         is_correct BOOLEAN NOT NULL,
         FOREIGN KEY (user_id) REFERENCES users (id),
-        FOREIGN KEY (challenge_id) REFERENCES challenges (id)
+        FOREIGN KEY (problem_id) REFERENCES problems (id)
     )
     """)
 
