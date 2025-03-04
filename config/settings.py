@@ -36,7 +36,7 @@ STATIC_URL = "static/"
 STATIC_DIR = os.path.join(BASE_DIR, "app/static")
 
 # Challenge files location
-CHALLENGES_DIR = os.path.join(BASE_DIR, "challenges")
+PROBLEMS_DIR = os.path.join(BASE_DIR, "problems")
 
 # Time zone
 TIME_ZONE = "UTC"
