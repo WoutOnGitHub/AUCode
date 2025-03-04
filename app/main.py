@@ -18,9 +18,11 @@ def init_app(app):
 
     # Register blueprints
     from app.routes.auth import auth_bp
+    from app.routes.contact import contact_bp
     from app.routes.problems import problems_bp
 
     app.register_blueprint(auth_bp)
+    app.register_blueprint(contact_bp)
     app.register_blueprint(problems_bp)
 
     # Add context processor for templates
