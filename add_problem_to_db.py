@@ -3,6 +3,9 @@ Messy temporary file which you can use to create problems
 """
 
 from app.models.problem import create_problem
+from config.database import create_tables
+
+create_tables()
 
 # Add Problem 1
 with open("problems/problem_001/description.md", "r") as f:
