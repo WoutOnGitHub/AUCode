@@ -37,7 +37,6 @@ def list_problems():
             problem["solved"] = submission and submission["is_correct"]
         else:
             problem["solved"] = False
-        pass
 
     return render_template("problems/list.html", problems=problems)
 
