@@ -35,7 +35,7 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 STATIC_URL = "static/"
 STATIC_DIR = os.path.join(BASE_DIR, "app/static")
 
-# Challenge files location
+# Problem files location
 PROBLEMS_DIR = os.path.join(BASE_DIR, "problems")
 
 # Time zone

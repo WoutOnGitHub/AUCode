@@ -46,8 +46,7 @@ def create_tables():
     CREATE TABLE IF NOT EXISTS problems (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
-        description TEXT NOT NULL,
-        file_path TEXT NOT NULL,
+        problem_folder TEXT NOT NULL,
         correct_hash TEXT NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
@@ -69,3 +68,7 @@ def create_tables():
 
     conn.commit()
     conn.close()
+
+
+if __name__ == "__main__":
+    create_tables()
