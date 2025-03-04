@@ -1,0 +1,90 @@
+{% extends "base.html" %} {% block title %}{{ problem.title }} - AUCode{% endblock %} {% block
+content %}
+<div class="container problem-detail">
+  <div class="problem-header">
+    <h1>{{ problem.title }}</h1>
+
+    {% if submission and submission.is_correct %}
+    <div class="problem-status solved">
+      <span>✓ Solved</span>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="card problem-description-card">
+    <h2>Problem Description</h2>
+    <div class="problem-description">{{ problem.description|markdown }}</div>
+  </div>
+
+  <div class="problem-actions-container">
+    <div class="card problem-download-card">
+      <h2>Download Challenge</h2>
+      <p>
+        Download the challenge file to get started. Implement the required function in the file and
+        run it to generate your solution hash.
+      </p>
+      <a
+        href="{{ url_for('problems.download_problem', problem_id=problem.id) }}"
+        class="btn btn-primary"
+      >
+        Download Challenge File
+      </a>
+    </div>
+
+    <div class="card problem-submit-card">
+      <h2>Submit Solution</h2>
+      {% if session.get('user_id') %} {% if submission and submission.is_correct %}
+      <div class="submission-success">
+        <p>You've already solved this challenge!</p>
+        <p class="submission-date">Solved on: {{ submission.submitted_at }}</p>
+      </div>
+      {% else %}
+      <p>
+        After implementing the solution, run the file to get the solution hash and submit it below:
+      </p>
+      <form
+        method="post"
+        action="{{ url_for('problems.submit_solution', problem_id=problem.id) }}"
+        class="submit-form"
+      >
+        <div class="form-group">
+          <label for="solution">Solution Hash</label>
+          <input
+            type="text"
+            id="solution"
+            name="solution"
+            placeholder="Enter your solution hash here"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Solution</button>
+      </form>
+
+      {% if submission and not submission.is_correct %}
+      <div class="previous-attempt">
+        <p>Your previous submission was incorrect. Please try again.</p>
+        <p class="submission-date">Submitted on: {{ submission.submitted_at }}</p>
+      </div>
+      {% endif %} {% endif %} {% else %}
+      <div class="login-required">
+        <p>You need to <a href="{{ url_for('auth.auth') }}">login</a> to submit your solution.</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="card problem-help-card">
+    <h2>How It Works</h2>
+    <ol>
+      <li>Download the challenge file</li>
+      <li>Implement the missing function according to the problem description</li>
+      <li>Run the file - it will output a solution hash</li>
+      <li>Submit that hash in the form above</li>
+    </ol>
+    <p class="help-note">
+      The challenge runs locally on your machine, so you can use print statements and debugging
+      tools freely.
+    </p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block title %}Problems - AUCode{% endblock %} {% block content %}
+<div class="container">
+  <h1>Coding Challenges</h1>
+
+  {% if problems %}
+  <div class="problems-list">
+    {% for problem in problems %}
+    <div class="card problem-card">
+      <h2>
+        {{ problem.title }} {% if problem.solved %}
+        <span class="problem-status solved">Solved</span>
+        {% else %}
+        <span class="problem-status unsolved">Unsolved</span>
+        {% endif %}
+      </h2>
+
+      <div class="problem-actions">
+        <a
+          href="{{ url_for('problems.view_problem', problem_id=problem.id) }}"
+          class="btn btn-primary"
+          >View Challenge</a
+        >
+      </div>
+
+      <div class="problem-meta">
+        <span class="problem-date"
+          >Added on: {{ problem.created_at if problem.created_at else 'Unknown date' }}</span
+        >
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <p>No challenges available yet. Check back soon!</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
