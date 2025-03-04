@@ -1,48 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}AUCode{% endblock %}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body>
-  <header>
-    <nav>
-      <div class="logo">
-        <a href="{{ url_for('index') }}">AUCode</a>
-      </div>
-      <ul class="nav-links">
-        <li><a href="{{ url_for('index') }}">Home</a></li>
-        {% if session.get('user_id') %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}AUCode{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="{{ url_for('index') }}">AUCode</a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          {% if session.get('user_id') %}
           <li><a href="#">Problems</a></li>
           <li><a href="#">Leaderboard</a></li>
           <li><a href="{{ url_for('auth.logout') }}">Logout ({{ session.get('username') }})</a></li>
-        {% else %}
+          {% else %}
           <li><a href="{{ url_for('auth.auth') }}">Login/Register</a></li>
-        {% endif %}
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+          {% endif %}
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <main>
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <div class="flash-messages">
-          {% for message in messages %}
-            <div class="flash-message">{{ message }}</div>
-          {% endfor %}
-        </div>
-      {% endif %}
-    {% endwith %}
+    <main>
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <div class="flash-messages">
+        {% for message in messages %}
+        <div class="flash-message">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %} {% block content %}{% endblock %}
+    </main>
 
-    {% block content %}{% endblock %}
-  </main>
-
-  <footer>
-    <p>&copy; {{ now.year }} AUCode. All rights reserved.</p>
-  </footer>
-
-</body>
+    <footer>
+      <p>&copy; {{ now.year }} AUCode. All rights reserved.</p>
+    </footer>
+  </body>
 </html>
