@@ -436,3 +436,20 @@ a:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* Basic code styling without syntax highlighting */
+pre {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  padding: 1rem;
+  border-radius: 4px;
+  font-family: monospace;
+  overflow-x: auto;
+}
+
+code {
+  font-family: monospace;
+  background-color: #f8f9fa;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+}

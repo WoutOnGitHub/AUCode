@@ -14,7 +14,7 @@ def init_app(app):
     # Custom implementation of markdown filter
     @app.template_filter("markdown")
     def render_markdown(text):
-        return Markup(markdown.markdown(text))
+        return Markup(markdown.markdown(text, extensions=["fenced_code"]))
 
     # Register blueprints
     from app.routes.auth import auth_bp
