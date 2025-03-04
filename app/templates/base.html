@@ -15,7 +15,7 @@
         <ul class="nav-links">
           <li><a href="{{ url_for('index') }}">Home</a></li>
           {% if session.get('user_id') %}
-          <li><a href="#">Problems</a></li>
+          <li><a href="{{ url_for('problems.list_problems') }}">Problems</a></li>
           <li><a href="#">Leaderboard</a></li>
           <li><a href="{{ url_for('auth.logout') }}">Logout ({{ session.get('username') }})</a></li>
           {% else %}
