@@ -1,7 +1,7 @@
 from config.database import get_connection
 
 
-def create_problem(title, description, file_path, correct_hash):
+def create_problem(title, problem_folder, correct_hash):
     """
     Create a new problem in the database
 
@@ -11,8 +11,8 @@ def create_problem(title, description, file_path, correct_hash):
     cursor = conn.cursor()
 
     cursor.execute(
-        "INSERT INTO problems (title, description, file_path, correct_hash) VALUES (?, ?, ?, ?)",
-        (title, description, file_path, correct_hash),
+        "INSERT INTO problems (title, problem_folder, correct_hash) VALUES (?, ?, ?)",
+        (title, problem_folder, correct_hash),
     )
 
     # Get the ID of the newly inserted problem
@@ -34,7 +34,10 @@ def get_problem_by_id(problem_id):
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM problems WHERE id = ?", (problem_id,))
-    problem = cursor.fetchone()
+    problem_row = cursor.fetchone()
+
+    # Convert Row object to regular dictionary if not None
+    problem = dict(problem_row) if problem_row else None
 
     conn.close()
 
@@ -51,7 +54,10 @@ def get_all_problems():
     cursor = conn.cursor()
 
     cursor.execute("SELECT * FROM problems ORDER BY created_at DESC")
-    problems = cursor.fetchall()
+    problems_rows = cursor.fetchall()
+
+    # Convert Row objects to regular dictionaries
+    problems = [dict(row) for row in problems_rows]
 
     conn.close()
 
