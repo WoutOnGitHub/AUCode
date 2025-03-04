@@ -1,7 +1,7 @@
 from config.database import get_connection
 
 
-def create_submission(user_id, challenge_id, solution_hash, is_correct):
+def create_submission(user_id, problem_id, solution_hash, is_correct):
     """
     Create a new submission in the database
 
@@ -11,8 +11,8 @@ def create_submission(user_id, challenge_id, solution_hash, is_correct):
     cursor = conn.cursor()
 
     cursor.execute(
-        "INSERT INTO submissions (user_id, challenge_id, solution_hash, is_correct) VALUES (?, ?, ?, ?)",
-        (user_id, challenge_id, solution_hash, is_correct),
+        "INSERT INTO submissions (user_id, problem_id, solution_hash, is_correct) VALUES (?, ?, ?, ?)",
+        (user_id, problem_id, solution_hash, is_correct),
     )
 
     # Get the ID of the newly inserted submission
@@ -61,9 +61,9 @@ def get_submissions_by_user(user_id):
     return submissions
 
 
-def get_submissions_by_challenge(challenge_id):
+def get_submissions_by_problem(problem_id):
     """
-    Get all submissions for a challenge
+    Get all submissions for a problem
 
     Returns: List of submission dicts
     """
@@ -71,8 +71,8 @@ def get_submissions_by_challenge(challenge_id):
     cursor = conn.cursor()
 
     cursor.execute(
-        "SELECT * FROM submissions WHERE challenge_id = ? ORDER BY submitted_at DESC",
-        (challenge_id,),
+        "SELECT * FROM submissions WHERE problem_id = ? ORDER BY submitted_at DESC",
+        (problem_id,),
     )
     submissions = cursor.fetchall()
 
@@ -81,9 +81,9 @@ def get_submissions_by_challenge(challenge_id):
     return submissions
 
 
-def get_user_challenge_submission(user_id, challenge_id):
+def get_user_problem_submission(user_id, problem_id):
     """
-    Get a user's submission for a specific challenge
+    Get a user's submission for a specific problem
 
     Returns: Submission dict or None if not found
     """
@@ -91,8 +91,8 @@ def get_user_challenge_submission(user_id, challenge_id):
     cursor = conn.cursor()
 
     cursor.execute(
-        "SELECT * FROM submissions WHERE user_id = ? AND challenge_id = ? ORDER BY submitted_at DESC LIMIT 1",
-        (user_id, challenge_id),
+        "SELECT * FROM submissions WHERE user_id = ? AND problem_id = ? ORDER BY submitted_at DESC LIMIT 1",
+        (user_id, problem_id),
     )
     submission = cursor.fetchone()
 
