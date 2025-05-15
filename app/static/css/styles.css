@@ -552,3 +552,61 @@ code {
     padding: 1.5rem;
   }
 }
+
+/* In your main stylesheet */
+
+.problem-description {
+  line-height: 1.2; /* REDUCE THIS from 1.8. Try values between 1.4 and 1.6. */
+  /* white-space: pre-wrap; /* Keep if you like its effect on single newlines,
+                              otherwise, you might test removing it to see if Markdown's
+                              default block handling is enough. */
+}
+
+/* Target elements *inside* .problem-description */
+.problem-description > h1, /* Use > for direct children if the h1/h2 are always direct */
+.problem-description > h2,
+.problem-description > h3,
+.problem-description > h4,
+.problem-description > h5,
+.problem-description > h6 {
+  margin-top: 0em; /* Add some space above headings inside the description */
+  margin-bottom: 0.4em; /* REDUCE this significantly. Adjust as needed. */
+  line-height: 1; /* Headings often have a tighter line-height */
+}
+
+.problem-description > p {
+  margin-top: 0;
+  margin-bottom: 0.6em; /* REDUCE this. 1rem is often too much for consecutive paragraphs. */
+  /* Adjust as needed. */
+}
+
+.problem-description > ul,
+.problem-description > ol {
+  margin-top: 0em;
+  margin-bottom: 0em; /* Space after the whole list */
+  padding-left: 1.5rem; /* Or your preferred indentation */
+}
+
+.problem-description > ul li, /* More specific */
+.problem-description > ol li {
+  margin-bottom: 0em; /* Reduce space between list items */
+  /* The line-height from .problem-description will apply here, adjust if needed */
+}
+
+/* For your syntax-highlighted code blocks */
+.problem-description pre.codehilite {
+  /* Or just .problem-description pre */
+  margin-top: 0.75em;
+  margin-bottom: 1em;
+  padding: 0.8em; /* You have 1rem, can adjust if desired */
+  line-height: 1.35; /* CRITICAL for code blocks - 1.8 is too much. */
+  /* Ensure this overrides the general .problem-description line-height */
+}
+
+/* If you have inline code `code` tags within paragraphs or lists */
+.problem-description p code,
+.problem-description li code {
+  /* Your existing 'code' style is probably fine, but ensure no extra margins are inherited */
+  font-size: 0.9em; /* Slightly smaller can look good for inline code */
+  padding: 0.1em 0.3em;
+}

@@ -1,7 +1,3 @@
-# Palindrome Checker
-
-## Problem Description
-
 A palindrome is a sequence that reads the same forward and backward. Your task is to implement a function that checks if a given input is a palindrome, with the following rules:
 
 - For strings: Ignore case, spaces, and punctuation when checking

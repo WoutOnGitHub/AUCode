@@ -1,7 +1,3 @@
-# Sum of Even Numbers
-
-## Problem Description
-
 Write a function that calculates the sum of all even numbers according to the following rules:
 
 - If given a single integer `n`, sum all even numbers from 0 up to and including `n`
