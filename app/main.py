@@ -20,10 +20,12 @@ def init_app(app):
     from app.routes.auth import auth_bp
     from app.routes.contact import contact_bp
     from app.routes.problems import problems_bp
+    from app.routes.profile import profile_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(contact_bp)
     app.register_blueprint(problems_bp)
+    app.register_blueprint(profile_bp)
 
     # Add context processor for templates
     @app.context_processor
