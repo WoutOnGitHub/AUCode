@@ -9,6 +9,7 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
+from app.models.user import get_user_by_id
 from app.utils.auth_helpers import get_current_user_id, login_required
 
 # Create a Blueprint for profile routes
@@ -19,6 +20,6 @@ profile_bp = Blueprint("profile", __name__, url_prefix="/profile")
 def profile():
     user_id = get_current_user_id()
     if user_id:
-        return render_template("profile.html")
+        return render_template("profile.html", user=get_user_by_id(user_id))
     else:
         return redirect(url_for("index"))
